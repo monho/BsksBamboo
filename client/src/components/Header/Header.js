@@ -1,6 +1,17 @@
 import React, { useState } from 'react'; // import 로 useState 를 불러온다!
 import styled from 'styled-components';
 import brend_logo from '../../assest/img/mylogo.png'
+import { render } from "react-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+import Rule from '../Contents/Rule/Rule';
+import App from '../../App';
+import LeftArea from '../Contents/LeftArea/LeftArea';
+
 const Header = () => {
     const MainSection = styled.section`
     margin: 0px;
@@ -36,10 +47,11 @@ const Header = () => {
        // padding: 15px 0;
     `
     const NvaUl = styled.ul`
+        margin-top: 12px;
         display:flex;
     `
     const NvLi = styled.li`
-        margin: 7px 0 7px 3vw;
+        margin: 7px 0 7px 2vw;
         list-style: none;
         font-size: 16px;
         font-weight: 600;
@@ -55,6 +67,7 @@ const Header = () => {
         color: #3866cd;
       }
 `;
+      
     return(
         <MainSection>
            <HeaderMain>
@@ -65,9 +78,10 @@ const Header = () => {
                </HederH>
                 <Navmenu>
                     <NvaUl>
-                        <LiTaghover href="/"><NvLi>메인</NvLi></LiTaghover>
-                        <LiTag href="/"><NvLi>알림판</NvLi></LiTag>
-                        <LiTag href="/"><NvLi>규칙판</NvLi></LiTag>
+                        <Link to="/" style={{ textDecoration: 'none' }}><LiTaghover><NvLi>메인</NvLi></LiTaghover></Link>
+                        <Link to="Rule" style={{ textDecoration: 'none' }}><LiTag><NvLi>규칙판</NvLi></LiTag></Link>
+
+                        {/* <LiTag href="/"><NvLi>규칙판</NvLi></LiTag> */}
                     </NvaUl>
                 </Navmenu>
            </HeaderMain>
