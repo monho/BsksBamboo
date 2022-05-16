@@ -232,7 +232,7 @@ const LeftArea = () => {
                 alert("피드 내용을 입력해주세요.");
                 return;
             }
-        Axios.post('http://localhost:60000/create', {
+        Axios.post('http://localhost:8001/create', {
             
             BAM_TITLE:BAM_TITLE, 
             BAM_CONTENT:BAM_CONTENT,
@@ -261,7 +261,7 @@ const LeftArea = () => {
             return;
         }
 
-    Axios.post('http://localhost:60000/report', {
+    Axios.post('http://localhost:8001/report', {
         
         report_title:report_title, 
         report_content:report_content,
@@ -275,7 +275,7 @@ const LeftArea = () => {
     
 
 useEffect(()=> {
-    Axios.get("http://localhost:60000/employees").then((response)=>{
+    Axios.get("http://localhost:8001/employees").then((response)=>{
         setEmployeeList(response.data);
     });
 },[]);
