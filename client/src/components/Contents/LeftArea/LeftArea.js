@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from 'styled-components';
 import Axios from "axios";
+import { useAsync } from "react-async"
 import { Modal , Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -212,13 +213,16 @@ const LeftArea = () => {
     const [BAM_TITLE, setTitle] = useState("");
     const [BAM_CONTENT, setContent] = useState("");
     const [BAM_SEQ,setSeq] = useState("");
+    const [BAM_IP,setIP] = useState("");
     const [employeeList, setEmployeeList] = useState([]);
+
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     const [show, setShow] = useState(false);
     const [report_pid,setReportPid] = useState("");
     const [report_title,setReportTitle] = useState("");
     const [report_content,setReportContent] = useState("");
+
 
     const submitBamboo = () =>{
             if(BAM_TITLE == "")
@@ -236,6 +240,7 @@ const LeftArea = () => {
             
             BAM_TITLE:BAM_TITLE, 
             BAM_CONTENT:BAM_CONTENT,
+            BAM_IP:BAM_IP,
   
             
         }).then(() =>{
@@ -272,7 +277,14 @@ const LeftArea = () => {
     setShow(false);
 };
 
-    
+
+
+const getData = async () => {
+    const res = await Axios.get('https://geolocation-db.com/json/')
+    console.log(res.data);
+    setIP(res.data.IPv4)
+  }
+
 
 useEffect(()=> {
     Axios.get("/employees").then((response)=>{
@@ -280,6 +292,14 @@ useEffect(()=> {
     });
 },[]);
     
+
+useEffect( () => {
+    //passing getData method to the lifecycle method
+    getData()
+
+  }, [])
+
+
     return(
         <MainSection>
             
@@ -288,6 +308,7 @@ useEffect(()=> {
                     <section>
                         <Title>
                             <TitleText>
+                            
                                 당신의 이야기를 들려주세요,
                             </TitleText>
                             <SecondText>
@@ -302,7 +323,7 @@ useEffect(()=> {
                                 }}>
 
                                 </InputTitle>
-                                
+
                             </InputArea>
                             <InputConten>   
                                 <InputTextContent placeholder="이야기를 들려주세요." name="BAM_CONTENT" value={BAM_CONTENT} onChange = {(e)=> {
