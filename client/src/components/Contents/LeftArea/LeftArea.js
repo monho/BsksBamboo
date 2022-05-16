@@ -102,7 +102,7 @@ font-size: 1em;
 color: #fff;
 padding: 10px 15px;
 background-color: #7ca0e1;
-margin: 11px 0 0 calc(100% - 100px);
+margin: 11px 0 0 calc(100% - 110px);
 &:hover {
 background-color: #3866cd;
 }
