@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from 'styled-components';
 import Axios from "axios";
+import useSWR from "swr";
 import { useAsync } from "react-async"
 import { Modal , Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -121,7 +122,7 @@ const InnerRight = styled.article`
     outline: none;
     border: none;
     box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
-    width: calc(68vw - 430px);
+    width: calc(68vw - 400px);
     padding: 15px;
     margin-bottom: 20px;
     position: relative;
@@ -209,7 +210,13 @@ const ReportContent = styled.textarea`
 const HiddenPid = styled.input`
     color:white;
 `
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 const LeftArea = () => {
+
+    const {data, errer} = useSWR('/create', fetcher)
+
+
     const [BAM_TITLE, setTitle] = useState("");
     const [BAM_CONTENT, setContent] = useState("");
     const [BAM_SEQ,setSeq] = useState("");
@@ -298,7 +305,9 @@ useEffect( () => {
     getData()
 
   }, [])
-
+  if (errer) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+  
 
     return(
         <MainSection>
