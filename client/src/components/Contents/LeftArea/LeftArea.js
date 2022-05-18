@@ -94,7 +94,8 @@ border: none;
 box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
 padding: 10px 0 10px 10px;
 @media screen and (max-width: 1000px) {
-    width: calc(100% - -18px);
+    width: calc(100% - 15px);
+    margin: 15px 0px 0px 20px;
     }
 
 `;
@@ -144,6 +145,16 @@ const InnerRight = styled.article`
     padding: 15px;
     margin-bottom: 20px;
     position: relative;
+    @media screen and (max-width: 1000px) {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    width: -1px;
+    }
 `;
 const InnerHeader = styled.header`
 display: flex;
