@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import styled from 'styled-components';
 import Axios from "axios";
-import useSWR from "swr";
-import { useAsync } from "react-async"
 import { Modal , Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MainSection = styled.section`
 margin: 0 17vw;
 padding:0px;
+@media screen and (max-width: 1000px) {
+    margin: 0 5vw;
+    }
 `; //ContentWarp 메인 css
 
 
@@ -22,9 +23,15 @@ const CoSe = styled.section`
 const LeftSection = styled.main`
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+    }
 `;
 const Title = styled.h1`
 margin: 60px 0 27px;
+@media screen and (max-width: 1000px) {
+    margin: 60px 0px 27px 20px;
+    }
 `;
 const TitleText = styled.p`
 color:#3669c5;
@@ -41,7 +48,12 @@ line-height: 0px;
 const InputArea = styled.div`
 width: 350px;
 margin: 45px 0 0 0;
+    @media screen and (max-width: 1000px) {
+        width: 365px;
+        margin: 45px 0px 0px 20px; 
+    }
 `;
+
 const InputTitle = styled.input`
 
 border-radius: 5px;
@@ -81,6 +93,9 @@ outline: none;
 border: none;
 box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
 padding: 10px 0 10px 10px;
+@media screen and (max-width: 1000px) {
+    width: calc(100% - -18px);
+    }
 
 `;
 const InputTextContent = styled.textarea`
@@ -105,6 +120,9 @@ color: #fff;
 padding: 10px 15px;
 background-color: #7ca0e1;
 margin: 11px 0 0 calc(100% - 110px);
+@media screen and (max-width: 1000px) {
+    margin: 11px 0px 0px calc(100% - 95px);
+    }
 &:hover {
 background-color: #3866cd;
 }
@@ -210,11 +228,10 @@ const ReportContent = styled.textarea`
 const HiddenPid = styled.input`
     color:white;
 `
-const fetcher = (url) => fetch(url).then((res) => res.json());
+
 
 const LeftArea = () => {
 
-    const {data, errer} = useSWR('/create', fetcher)
 
 
     const [BAM_TITLE, setTitle] = useState("");
@@ -286,13 +303,6 @@ const LeftArea = () => {
 
 
 
-const getData = async () => {
-    const res = await Axios.get('https://geolocation-db.com/json/')
-    console.log(res.data);
-    setIP(res.data.IPv4)
-  }
-
-
 useEffect(()=> {
     Axios.get("/employees").then((response)=>{
         setEmployeeList(response.data);
@@ -300,14 +310,7 @@ useEffect(()=> {
 },[]);
     
 
-useEffect( () => {
-    //passing getData method to the lifecycle method
-    getData()
 
-  }, [])
-  if (errer) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
-  
 
     return(
         <MainSection>

@@ -8,9 +8,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import Rule from '../Contents/Rule/Rule';
-import App from '../../App';
-import LeftArea from '../Contents/LeftArea/LeftArea';
+
 
 const Header = () => {
     const MainSection = styled.section`
@@ -28,7 +26,9 @@ const Header = () => {
         top: 0;
         background-color: #fff;
         z-index: 2;
-
+        @media screen and (max-width: 1000px) {
+            padding: 0 10vw;
+        }
     `;
 
     const HederH = styled.h1`
@@ -55,6 +55,9 @@ const Header = () => {
         list-style: none;
         font-size: 16px;
         font-weight: 600;
+        @media screen and (max-width: 1000px) {
+            margin: 7px 0 7px 10vw;
+        }
     `
     const LiTag = styled.a`
         text-decoration: none;
