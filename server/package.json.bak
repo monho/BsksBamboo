@@ -5,7 +5,7 @@
   "main": "web.js",
   "scripts": {
     "start": "node web.js",
-    "devStart": "nodemon web.js",
+    "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

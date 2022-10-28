@@ -2,24 +2,18 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
-require('dotenv').config();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname + '/build'));
 
 
-const db = mysql.createPool({
-  host: process.env.host,
-  user: process.env.user,
-  password: process.env.password,
-  database: process.env.database,
-});
 
-// const db = mysql.createPool({
-//     host: 'innodb-003.cafe24.com',
-//     user: 'bsksbamboo',
-//     password: 'answnsgh12@@',
-//     database:'bsksbamboo',
-// });
+  const db = mysql.createPool({
+      host: 'bamboo.cafe24app.com',
+      user: 'bamboobks',
+      password: 'answnsgh12@@',
+      database:'bamboobks',
+  });
 
 
 
@@ -38,11 +32,12 @@ app.post("/create", (req, res) => {
 
     const BAM_TITLE = req.body.BAM_TITLE
     const BAM_CONTENT = req.body.BAM_CONTENT
+    const BAM_IP = req.body.BAM_IP
     const BAM_TIME = req.body.BAM_TIME
 
     db.query(
-        "INSERT INTO BAMBOO_TABLE ( BAM_TITLE , BAM_CONTENT ,BAM_TIME) VALUES (?,?,NOW())",
-        [BAM_TITLE,BAM_CONTENT,BAM_TIME],
+        "INSERT INTO BAMBOO_TABLE ( BAM_TITLE , BAM_CONTENT ,BAM_IP ,BAM_TIME) VALUES (?,?,?,NOW())",
+        [BAM_TITLE,BAM_CONTENT,BAM_IP,BAM_TIME],
         (err, result) => {
           if (err) {
             console.log(err);
@@ -79,8 +74,7 @@ app.post("/report", (req, res) => {
 });
 
 app.listen(8001, () =>{
-    console.log('running on port 60000');
+    console.log('running on port 8001');
 });
 
 
-//유튜브 16:34초부터 다시 시작

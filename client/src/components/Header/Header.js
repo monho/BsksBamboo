@@ -14,7 +14,7 @@ const Header = () => {
     const MainSection = styled.section`
     margin: 0px;
     padding:0px;
-    
+
 `; //ContentWarp 메인 css
 
     const HeaderMain = styled.div`
@@ -70,7 +70,7 @@ const Header = () => {
         color: #3866cd;
       }
 `;
-      
+
     return(
         <MainSection>
            <HeaderMain>
