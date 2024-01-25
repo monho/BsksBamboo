@@ -8,12 +8,7 @@ app.use(express.static(__dirname + '/build'));
 
 
 
-  const db = mysql.createPool({
-      host: 'bamboo.cafe24app.com',
-      user: 'bamboobks',
-      password: 'answnsgh12@@',
-      database:'bamboobks',
-  });
+
 
 
 
